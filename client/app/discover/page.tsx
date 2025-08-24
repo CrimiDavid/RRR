@@ -1,6 +1,7 @@
 "use client"
 import {CreatorCarousel} from "@/components/discover/carousel-creators";
 import TopCreators from "@/components/discover/creators";
+import {Navbar} from "@/components/navbar";
 
 export default function DiscoverPage() {
     return (
