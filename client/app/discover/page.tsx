@@ -1,7 +1,5 @@
-"use client"
 import {CreatorCarousel} from "@/components/discover/carousel-creators";
 import TopCreators from "@/components/discover/creators";
-import {Navbar} from "@/components/navbar";
 import {List} from "@/components/list";
 
 export default function DiscoverPage() {
@@ -16,6 +14,7 @@ export default function DiscoverPage() {
             <main className={"w-full border-2 rounded-md p-1 flex-grow p-4 overflow-y-scroll max-h-[100vh]"}>
                 <List/>
             </main>
+
         </div>
     )
 }

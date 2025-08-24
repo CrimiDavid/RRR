@@ -28,6 +28,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+  TableFooter,
 } from "@/components/ui/table";
 
 export const data = [
@@ -352,66 +353,71 @@ const List = () => {
           </TableHeader>
           <TableBody>
             {data.map((item, index) => (
-              <TableRow key={index}>
-                <TableCell className="">
-                  <div className="flex items-center gap-2 align-top">
-                    {item.icon}
-                  </div>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {item.category}
-                </TableCell>
-                <TableCell className="pl-0 align-top md:pl-4">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-baseline justify-between gap-1 md:hidden">
-                      <div className="flex items-center gap-1">
+                <TableRow key={index}>
+                  <TableCell className="">
+                    <div className="flex items-center gap-2 align-top">
+                      {item.icon}
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {item.category}
+                  </TableCell>
+                  <TableCell className="pl-0 align-top md:pl-4">
+                    <div className="flex flex-col gap-2">
+                      <div className="flex items-baseline justify-between gap-1 md:hidden">
+                        <div className="flex items-center gap-1">
                         <span className="text-sm font-medium">
                           {item.category}
                         </span>
-                        <span className="text-sm text-muted-foreground">
+                          <span className="text-sm text-muted-foreground">
                           - {item.segment}
                         </span>
-                        <span
-                          className={cn(
-                            "ml-1 block h-1.5 w-4 rounded-full md:hidden",
+                          <span
+                              className={cn(
+                                  "ml-1 block h-1.5 w-4 rounded-full md:hidden",
+                                  item.offer === "Free" && "bg-yellow-400",
+                                  item.offer === "Professional" && "bg-green-400",
+                                  item.offer === "Enterprise" && "bg-blue-400",
+                              )}
+                          ></span>
+                        </div>
+                        <span className="text-xs text-muted-foreground">
+                        {item.year}
+                      </span>
+                      </div>
+                      <p className="text-sm text-muted-foreground md:text-primary">
+                        {item.description}
+                      </p>
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden text-right md:table-cell">
+                    {item.year}
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    <div className="flex items-center gap-2">
+                    <span
+                        className={cn(
+                            "block h-6 w-1.5 rounded-full",
                             item.offer === "Free" && "bg-yellow-400",
                             item.offer === "Professional" && "bg-green-400",
                             item.offer === "Enterprise" && "bg-blue-400",
-                          )}
-                        ></span>
-                      </div>
-                      <span className="text-xs text-muted-foreground">
-                        {item.year}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground md:text-primary">
-                      {item.description}
-                    </p>
-                  </div>
-                </TableCell>
-                <TableCell className="hidden text-right md:table-cell">
-                  {item.year}
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={cn(
-                        "block h-6 w-1.5 rounded-full",
-                        item.offer === "Free" && "bg-yellow-400",
-                        item.offer === "Professional" && "bg-green-400",
-                        item.offer === "Enterprise" && "bg-blue-400",
-                      )}
+                        )}
                     ></span>
-                    {item.offer}
-                  </div>
-                </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {item.segment}
-                </TableCell>
-              </TableRow>
+                      {item.offer}
+                    </div>
+                  </TableCell>
+                  <TableCell className="hidden md:table-cell">
+                    {item.segment}
+                  </TableCell>
+                </TableRow>
             ))}
           </TableBody>
         </Table>
+        <hr/>
+        <footer className={"flex w-full justify-center mt-2"}>
+          <p>Page 1</p>
+
+        </footer>
       </div>
     </section>
   );

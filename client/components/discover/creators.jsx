@@ -1,3 +1,4 @@
+"use client"
 import { useEffect, useState } from "react";
 
 const words = ["Creators", "Builders", "Innovators", "Dreamers", "Heroes", "Time Savers"];
