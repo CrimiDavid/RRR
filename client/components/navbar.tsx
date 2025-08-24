@@ -996,29 +996,13 @@ const navigationMenuItems = [
 ] as const;
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
-  const [submenu, setSubmenu] = useState<
-    "solutions" | "products" | "global" | "partners" | "resources" | null
-  >(null);
+
 
   return (
     <section className="bg-background inset-x-0 top-0 z-20">
       <div className="container mx-auto">
         <NavigationMenu className="min-w-full [&>div:last-child]:left-auto">
           <div className="flex w-full justify-between gap-2 py-4">
-            <a
-              href="#"
-              className="flex items-center gap-2"
-            >
-              <img
-                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
-                className="max-h-8 dark:invert"
-                alt="Shadcn UI Navbar"
-              />
-              <span className="text-lg font-semibold tracking-tighter">
-                RRR
-              </span>
-            </a>
             <div className="flex items-center gap-2 xl:gap-8">
               <NavigationMenuList className="hidden gap-0 lg:flex">
                 {navigationMenuItems.map((item) => (
