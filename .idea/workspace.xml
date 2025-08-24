@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8b060a-420d-4979-9074-8371c8229d89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/app/discover/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/discover/carousel-creators.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/theme-provider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/schemas/user.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/discover/creators.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/routes/discover/discover.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/discover/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/carousel-creators.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/carousel-creators.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/data/db.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/data/db.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +80,9 @@
       <workItem from="1755876383793" duration="1540000" />
       <workItem from="1755887481856" duration="5000" />
       <workItem from="1755887540718" duration="5714000" />
-      <workItem from="1755981391447" duration="10041000" />
+      <workItem from="1755981391447" duration="11547000" />
+      <workItem from="1756054664910" duration="983000" />
+      <workItem from="1756059888039" duration="1361000" />
     </task>
     <servers />
   </component>

@@ -22,7 +22,7 @@ export function CreatorCarousel() {
             try {
                 setLoading(true)
                 setError(null)
-                const res = await fetch("http://localhost:8000/all" )
+                const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/discover/all` )
                 if (ignore) {
                     return
                 }
@@ -52,28 +52,28 @@ export function CreatorCarousel() {
     }
 
     return (
-        <div className="w-full p-8 rounded-2xl">
+        <div className="w-full p-4 sm:p-8 rounded-2xl">
             <Carousel
                 className="w-full max-w-6xl mx-auto"
-                opts={{ align: "start", containScroll: "trimSnaps" }}
+                opts={{ align: "center", containScroll: "trimSnaps" }}
                 aria-busy={loading ? "true" : "false"}
                 aria-live="polite"
             >
-                <CarouselContent className="-ml-2">
+                <CarouselContent className="-ml-1 sm:-ml-2 flex justify-center sm:justify-start">
                     {loading
                         ? Array.from({ length: skeletonCount }).map((_, i) => (
                             <CarouselItem
                                 key={`skeleton-${i}`}
-                                className="pl-2 shrink-0 grow-0 md:basis-[16rem] lg:basis-[18rem]"
+                                className="pl-1 sm:pl-2 basis-auto flex-shrink-0 flex justify-center"
                             >
                                 <div className="p-1">
-                                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-3xl">
-                                        <CardContent className="p-6">
-                                            <div className="flex flex-col items-center space-y-4">
-                                                <Skeleton className="h-16 w-16 rounded-full" />
-                                                <div className="space-y-2 text-center w-full">
-                                                    <Skeleton className="h-5 w-3/4 mx-auto" />
-                                                    <Skeleton className="h-4 w-1/2 mx-auto" />
+                                    <Card className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 rounded-3xl w-48 sm:w-52">
+                                        <CardContent className="p-4">
+                                            <div className="flex flex-col items-center space-y-2">
+                                                <Skeleton className="h-12 w-12 rounded-full" />
+                                                <div className="space-y-1 text-center w-full">
+                                                    <Skeleton className="h-4 w-3/4 mx-auto" />
+                                                    <Skeleton className="h-3 w-1/2 mx-auto" />
                                                 </div>
                                             </div>
                                         </CardContent>
@@ -84,32 +84,32 @@ export function CreatorCarousel() {
                         : users.map((user, index) => (
                             <CarouselItem
                                 key={index}
-                                className="pl-2 shrink-0 grow-0 md:basis-[16rem] lg:basis-[18rem]"
+                                className="pl-1 sm:pl-2 basis-auto flex-shrink-0 flex justify-center"
                             >
                                 <div className="p-1">
-                                    <Card className="group border-0  shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden rounded-3xl">
+                                    <Card className="group w-48 sm:w-52 border-0  shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 cursor-pointer overflow-hidden rounded-3xl">
                                         <div className="flex inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        <CardContent className="relative p-6">
-                                            <div className="flex flex-col items-center space-y-4">
+                                        <CardContent className="relative p-4">
+                                            <div className="flex flex-col items-center space-y-2">
                                                 <div className="relative">
-                                                    <Avatar className="h-16 w-16 ring-2 ring-slate-200 dark:ring-slate-700 group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all duration-300">
+                                                    <Avatar className="h-12 w-12 ring-2 ring-slate-200 dark:ring-slate-700 group-hover:ring-blue-400 dark:group-hover:ring-blue-500 transition-all duration-300">
                                                         <AvatarImage
                                                             src={user.avatar}
                                                             alt={`${user.name}'s avatar`}
                                                             className="object-cover"
                                                         />
-                                                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold text-lg">
+                                                        <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold text-base">
                                                             {getInitials(user.name)}
                                                         </AvatarFallback>
                                                     </Avatar>
-                                                    <div className="absolute -bottom-1 -right-1 h-5 w-5 bg-green-400 rounded-full border-2 border-white dark:border-slate-900 shadow-sm" />
+                                                    <div className="absolute -bottom-1 -right-1 h-4 w-4 bg-green-400 rounded-full border-2 border-white dark:border-slate-900 shadow-sm" />
                                                 </div>
 
-                                                <div className="text-center space-y-1 min-h-[3rem] flex flex-col justify-center">
-                                                    <h3 className="font-semibold text-lg leading-tight text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                                                <div className="text-center space-y-0.5 min-h-[2.5rem] flex flex-col justify-center">
+                                                    <h3 className="font-semibold text-base leading-tight text-slate-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                                                         {user.name}
                                                     </h3>
-                                                    <p className="text-sm text-slate-600 dark:text-slate-400 font-medium">
+                                                    <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
                                                         {user.fame}
                                                     </p>
                                                 </div>

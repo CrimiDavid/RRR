@@ -1,10 +1,12 @@
+"use client"
 import {CreatorCarousel} from "@/components/discover/carousel-creators";
+import TopCreators from "@/components/discover/creators";
 
 export default function DiscoverPage() {
     return (
         <div className={"flex flex-col container mx-auto mt-12 border-2 min-h-[90vh] p-2 space-y-2"}>
-            <header className={"border-2 rounded-md h-1/4 flex flex-col p-1"}>
-                <h1 className="text-xl font-bold mb-4">Top Creators 🏆</h1>
+            <header className={"border-2 rounded-md flex flex-col p-1"}>
+                <TopCreators/>
                 <div className="flex justify-center items-center">
                     <CreatorCarousel/>
                 </div>
