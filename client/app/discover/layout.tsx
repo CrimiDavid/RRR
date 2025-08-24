@@ -1,5 +1,5 @@
 import {Navbar} from "@/components/navbar";
-import {SidebarProvider} from "@/components/ui/sidebar";
+import {SidebarProvider, SidebarTrigger} from "@/components/ui/sidebar";
 import {AppSidebar} from "@/components/sidebar";
 
 export default function DiscoverLayout({children}: {children: React.ReactNode}) {

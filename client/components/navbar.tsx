@@ -54,6 +54,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import {SidebarTrigger} from "@/components/ui/sidebar";
 
 const solutions = [
   {
@@ -1005,6 +1006,7 @@ const Navbar = () => {
           <div className="flex w-full justify-between gap-2 py-4">
             <div className="flex items-center gap-2 xl:gap-8">
               <NavigationMenuList className="hidden gap-0 lg:flex">
+                <SidebarTrigger/>
                 {navigationMenuItems.map((item) => (
                   <NavigationMenuItem key={item.key}>
                     <NavigationMenuTrigger className="text-xs xl:text-sm">
@@ -1017,7 +1019,17 @@ const Navbar = () => {
                 ))}
               </NavigationMenuList>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex md:justify-normal justify-between md:max-w-10 w-full items-center gap-2">
+              <SidebarTrigger className={"md:hidden"}/>
+              <div className="md:hidden flex items-center gap-2 xl:gap-8">
+                <img
+                    src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
+                    className="max-h-8 dark:invert"
+                    alt="Shadcn UI Navbar"
+                />
+                <span className="text-lg font-semibold tracking-tighter">RRR</span>
+              </div>
+
               <Button className="block rounded-xl"> <CgProfile/></Button>
             </div>
           </div>
@@ -1028,4 +1040,4 @@ const Navbar = () => {
   );
 };
 
-export { Navbar };
+export {Navbar};

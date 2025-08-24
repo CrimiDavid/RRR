@@ -1,0 +1,420 @@
+import {
+  Shield,
+  Cloud,
+  Briefcase,
+  BarChart3,
+  Cpu,
+  Globe,
+  Users,
+  Database,
+  CreditCard,
+  Headphones,
+  Rocket,
+  ShoppingCart,
+  Monitor,
+  MessageSquare,
+  Lock,
+  Settings,
+  Zap,
+  FileText,
+} from "lucide-react"
+
+import { cn } from "@/lib/utils";
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
+export const data = [
+  {
+    icon: <Shield strokeWidth={2} />,
+    category: "Security",
+    description: "AI-driven firewall with real-time network protection",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Cloud strokeWidth={2} />,
+    category: "Technology",
+    description: "Next-gen cloud infrastructure with auto healing nodes",
+    year: 2023,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <Briefcase strokeWidth={2} />,
+    category: "Services",
+    description: "Outsourced IT management tailored for SMEs",
+    year: 2022,
+    offer: "Free",
+    segment: "Startup",
+  },
+  {
+    icon: <BarChart3 strokeWidth={2} />,
+    category: "Analytics",
+    description: "Predictive analytics engine with machine learning models",
+    year: 2025,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Cpu strokeWidth={2} />,
+    category: "Hardware",
+    description: "Custom-built processors optimized for AI workloads",
+    year: 2024,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <Globe strokeWidth={2} />,
+    category: "Networking",
+    description: "Global CDN with ultra-low latency edge computing",
+    year: 2023,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Users strokeWidth={2} />,
+    category: "Collaboration",
+    description: "Team productivity suite with integrated AI assistants",
+    year: 2024,
+    offer: "Free",
+    segment: "Business",
+  },
+  {
+    icon: <Database strokeWidth={2} />,
+    category: "Database",
+    description: "Serverless database with instant horizontal scaling",
+    year: 2022,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <CreditCard strokeWidth={2} />,
+    category: "Fintech",
+    description: "Payment gateway with fraud detection and global support",
+    year: 2025,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Headphones strokeWidth={2} />,
+    category: "Support",
+    description: "24/7 AI-powered customer service chatbot",
+    year: 2024,
+    offer: "Professional",
+    segment: "Startup",
+  },
+  {
+    icon: <Rocket strokeWidth={2} />,
+    category: "Innovation",
+    description: "Rapid prototyping tools for product development",
+    year: 2023,
+    offer: "Free",
+    segment: "Startup",
+  },
+  {
+    icon: <ShoppingCart strokeWidth={2} />,
+    category: "E-commerce",
+    description: "Omnichannel platform for online retail businesses",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Monitor strokeWidth={2} />,
+    category: "Monitoring",
+    description: "Infrastructure monitoring with anomaly detection",
+    year: 2022,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <MessageSquare strokeWidth={2} />,
+    category: "Communication",
+    description: "Secure encrypted messaging app for enterprises",
+    year: 2023,
+    offer: "Free",
+    segment: "Business",
+  },
+  {
+    icon: <Lock strokeWidth={2} />,
+    category: "Compliance",
+    description: "GDPR and HIPAA compliance tracking platform",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Healthcare",
+  },
+  {
+    icon: <Settings strokeWidth={2} />,
+    category: "Automation",
+    description: "Robotic process automation for repetitive tasks",
+    year: 2025,
+    offer: "Professional",
+    segment: "Business",
+  },
+  {
+    icon: <Zap strokeWidth={2} />,
+    category: "Energy",
+    description: "Smart energy management system for data centers",
+    year: 2023,
+    offer: "Enterprise",
+    segment: "Enterprise",
+  },
+  {
+    icon: <FileText strokeWidth={2} />,
+    category: "Documentation",
+    description: "Collaborative documentation with AI summarization",
+    year: 2022,
+    offer: "Free",
+    segment: "Startup",
+  },  {
+    icon: <Shield strokeWidth={2} />,
+    category: "Security",
+    description: "AI-driven firewall with real-time network protection",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Cloud strokeWidth={2} />,
+    category: "Technology",
+    description: "Next-gen cloud infrastructure with auto healing nodes",
+    year: 2023,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <Briefcase strokeWidth={2} />,
+    category: "Services",
+    description: "Outsourced IT management tailored for SMEs",
+    year: 2022,
+    offer: "Free",
+    segment: "Startup",
+  },
+  {
+    icon: <BarChart3 strokeWidth={2} />,
+    category: "Analytics",
+    description: "Predictive analytics engine with machine learning models",
+    year: 2025,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Cpu strokeWidth={2} />,
+    category: "Hardware",
+    description: "Custom-built processors optimized for AI workloads",
+    year: 2024,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <Globe strokeWidth={2} />,
+    category: "Networking",
+    description: "Global CDN with ultra-low latency edge computing",
+    year: 2023,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Users strokeWidth={2} />,
+    category: "Collaboration",
+    description: "Team productivity suite with integrated AI assistants",
+    year: 2024,
+    offer: "Free",
+    segment: "Business",
+  },
+  {
+    icon: <Database strokeWidth={2} />,
+    category: "Database",
+    description: "Serverless database with instant horizontal scaling",
+    year: 2022,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <CreditCard strokeWidth={2} />,
+    category: "Fintech",
+    description: "Payment gateway with fraud detection and global support",
+    year: 2025,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Headphones strokeWidth={2} />,
+    category: "Support",
+    description: "24/7 AI-powered customer service chatbot",
+    year: 2024,
+    offer: "Professional",
+    segment: "Startup",
+  },
+  {
+    icon: <Rocket strokeWidth={2} />,
+    category: "Innovation",
+    description: "Rapid prototyping tools for product development",
+    year: 2023,
+    offer: "Free",
+    segment: "Startup",
+  },
+  {
+    icon: <ShoppingCart strokeWidth={2} />,
+    category: "E-commerce",
+    description: "Omnichannel platform for online retail businesses",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Business",
+  },
+  {
+    icon: <Monitor strokeWidth={2} />,
+    category: "Monitoring",
+    description: "Infrastructure monitoring with anomaly detection",
+    year: 2022,
+    offer: "Professional",
+    segment: "Enterprise",
+  },
+  {
+    icon: <MessageSquare strokeWidth={2} />,
+    category: "Communication",
+    description: "Secure encrypted messaging app for enterprises",
+    year: 2023,
+    offer: "Free",
+    segment: "Business",
+  },
+  {
+    icon: <Lock strokeWidth={2} />,
+    category: "Compliance",
+    description: "GDPR and HIPAA compliance tracking platform",
+    year: 2024,
+    offer: "Enterprise",
+    segment: "Healthcare",
+  },
+  {
+    icon: <Settings strokeWidth={2} />,
+    category: "Automation",
+    description: "Robotic process automation for repetitive tasks",
+    year: 2025,
+    offer: "Professional",
+    segment: "Business",
+  },
+  {
+    icon: <Zap strokeWidth={2} />,
+    category: "Energy",
+    description: "Smart energy management system for data centers",
+    year: 2023,
+    offer: "Enterprise",
+    segment: "Enterprise",
+  },
+  {
+    icon: <FileText strokeWidth={2} />,
+    category: "Documentation",
+    description: "Collaborative documentation with AI summarization",
+    year: 2022,
+    offer: "Free",
+    segment: "Startup",
+  },
+]
+
+const List = () => {
+  return (
+    <section >
+      <div className="container px-0">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead></TableHead>
+              <TableHead className="hidden font-bold text-primary md:table-cell">
+                Category
+              </TableHead>
+              <TableHead>
+                <span className="hidden font-bold text-primary md:block">
+                  Description
+                </span>
+                <span className="block font-bold text-primary md:hidden">
+                  Project
+                </span>
+              </TableHead>
+              <TableHead className="hidden text-right font-bold text-primary md:table-cell">
+                Year
+              </TableHead>
+              <TableHead className="hidden font-bold text-primary md:table-cell">
+                Offer
+              </TableHead>
+              <TableHead className="hidden font-bold text-primary md:table-cell">
+                Segment
+              </TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {data.map((item, index) => (
+              <TableRow key={index}>
+                <TableCell className="">
+                  <div className="flex items-center gap-2 align-top">
+                    {item.icon}
+                  </div>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {item.category}
+                </TableCell>
+                <TableCell className="pl-0 align-top md:pl-4">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-baseline justify-between gap-1 md:hidden">
+                      <div className="flex items-center gap-1">
+                        <span className="text-sm font-medium">
+                          {item.category}
+                        </span>
+                        <span className="text-sm text-muted-foreground">
+                          - {item.segment}
+                        </span>
+                        <span
+                          className={cn(
+                            "ml-1 block h-1.5 w-4 rounded-full md:hidden",
+                            item.offer === "Free" && "bg-yellow-400",
+                            item.offer === "Professional" && "bg-green-400",
+                            item.offer === "Enterprise" && "bg-blue-400",
+                          )}
+                        ></span>
+                      </div>
+                      <span className="text-xs text-muted-foreground">
+                        {item.year}
+                      </span>
+                    </div>
+                    <p className="text-sm text-muted-foreground md:text-primary">
+                      {item.description}
+                    </p>
+                  </div>
+                </TableCell>
+                <TableCell className="hidden text-right md:table-cell">
+                  {item.year}
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={cn(
+                        "block h-6 w-1.5 rounded-full",
+                        item.offer === "Free" && "bg-yellow-400",
+                        item.offer === "Professional" && "bg-green-400",
+                        item.offer === "Enterprise" && "bg-blue-400",
+                      )}
+                    ></span>
+                    {item.offer}
+                  </div>
+                </TableCell>
+                <TableCell className="hidden md:table-cell">
+                  {item.segment}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </section>
+  );
+};
+
+export { List };
