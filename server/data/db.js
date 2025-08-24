@@ -16,3 +16,7 @@ export async function connectDB() {
         process.exit(1);
     }
 }
+
+export function db() {
+    return mongoose.connection.db;
+}
