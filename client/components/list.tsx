@@ -330,7 +330,7 @@ const List = () => {
             <TableRow>
               <TableHead></TableHead>
               <TableHead className="hidden font-bold text-primary md:table-cell">
-                Category
+                Name
               </TableHead>
               <TableHead>
                 <span className="hidden font-bold text-primary md:block">
@@ -341,13 +341,11 @@ const List = () => {
                 </span>
               </TableHead>
               <TableHead className="hidden text-right font-bold text-primary md:table-cell">
-                Year
+                Type
               </TableHead>
+
               <TableHead className="hidden font-bold text-primary md:table-cell">
-                Offer
-              </TableHead>
-              <TableHead className="hidden font-bold text-primary md:table-cell">
-                Segment
+                Creator
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -372,14 +370,7 @@ const List = () => {
                           <span className="text-sm text-muted-foreground">
                           - {item.segment}
                         </span>
-                          <span
-                              className={cn(
-                                  "ml-1 block h-1.5 w-4 rounded-full md:hidden",
-                                  item.offer === "Free" && "bg-yellow-400",
-                                  item.offer === "Professional" && "bg-green-400",
-                                  item.offer === "Enterprise" && "bg-blue-400",
-                              )}
-                          ></span>
+
                         </div>
                         <span className="text-xs text-muted-foreground">
                         {item.year}
@@ -393,27 +384,11 @@ const List = () => {
                   <TableCell className="hidden text-right md:table-cell">
                     {item.year}
                   </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    <div className="flex items-center gap-2">
-                    <span
-                        className={cn(
-                            "block h-6 w-1.5 rounded-full",
-                            item.offer === "Free" && "bg-yellow-400",
-                            item.offer === "Professional" && "bg-green-400",
-                            item.offer === "Enterprise" && "bg-blue-400",
-                        )}
-                    ></span>
-                      {item.offer}
-                    </div>
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
-                    {item.segment}
-                  </TableCell>
                 </TableRow>
             ))}
           </TableBody>
         </Table>
-        <hr/>
+        <hr/> 
         <footer className={"flex w-full justify-center mt-2"}>
           <p>Page 1</p>
 

@@ -4,6 +4,7 @@ import cors from "cors";
 
 //route imports
 import discoverRoute from "./routes/discover/discover.js"
+import postsRoute from "./routes/posts/posts.js"
 //config
 const app = express();
 const port = 8000;
@@ -14,7 +15,7 @@ app.use(cors());
 
 //routes
 app.use("/discover", discoverRoute);
-
+app.use("/posts", postsRoute)
 
 
 
