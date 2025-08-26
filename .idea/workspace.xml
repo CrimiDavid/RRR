@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8b060a-420d-4979-9074-8371c8229d89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/lib/api/posts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/discover/list-manager.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/discover/load_list.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/query/query-provider.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/hooks/useList.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/app/discover/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/discover/layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/app/discover/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/discover/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/lib/api/posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/api/posts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,7 +88,8 @@
       <workItem from="1756059888039" duration="10697000" />
       <workItem from="1756152416829" duration="13000" />
       <workItem from="1756152466896" duration="712000" />
-      <workItem from="1756160614664" duration="4955000" />
+      <workItem from="1756160614664" duration="5562000" />
+      <workItem from="1756228937651" duration="5558000" />
     </task>
     <servers />
   </component>

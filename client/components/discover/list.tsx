@@ -1,3 +1,4 @@
+"use client"
 import {
   Shield,
   Cloud,
@@ -32,7 +33,9 @@ import {
   TableRow,
   TableFooter,
 } from "@/components/ui/table";
-import {getPosts} from "@/lib/api/posts";
+import {getPosts, PAGE_SIZE} from "@/lib/api/posts";
+import React from "react";
+import {useRepos} from "@/hooks/useList";
 
 export const data = [
   {
@@ -324,9 +327,16 @@ export const data = [
   },
 ]
 
-const List = async () => {
-  console.log("rendering")
-  const data = await getPosts()
+interface ListProps {
+  page: number,
+  setPage: (page: number) => void
+}
+const List = ({page, setPage}: ListProps) => {
+  const [isPreviousData, startTransition] = React.useTransition()
+
+  console.log("rendering list")
+  const {data} = useRepos(page)
+
   return (
     <section >
       <div className="container px-0">
@@ -354,8 +364,8 @@ const List = async () => {
               </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
-            {data.map((item, index) => (
+          <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
+            {data.map((item, index: number) => (
                 <TableRow key={index}>
                   <TableCell className="">
                     <div className="flex items-center gap-2 align-top">
@@ -382,9 +392,34 @@ const List = async () => {
             ))}
           </TableBody>
         </Table>
-        <hr/> 
-        <footer className={"flex w-full justify-center mt-2"}>
-          <p>Page 1</p>
+        <hr/>
+        <footer className={"flex w-full justify-center mt-2 space-x-2"}>
+          {page > 1 && (
+              <button
+                  style={{opacity: isPreviousData ? 0.5 : 1}}
+                  onClick={() => {
+                    startTransition(() => {
+                      setPage((p) => p - 1)
+                    })
+                  }}
+                  disabled={isPreviousData || page === 1}
+              >
+                Previous
+              </button>
+          )}
+          <span>Page {page}</span>
+          <button
+              style={{opacity: isPreviousData ? 0.5 : 1}}
+              disabled={isPreviousData}
+              onClick={() => {
+                startTransition(() => {
+                  setPage(prev => prev + 1)
+                })
+                console.log("clicked")
+              }}
+          >
+            Next
+          </button>
 
         </footer>
       </div>
@@ -392,4 +427,4 @@ const List = async () => {
   );
 };
 
-export { List };
+export {List};
