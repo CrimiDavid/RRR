@@ -1,6 +1,6 @@
 import {CreatorCarousel} from "@/components/discover/carousel-creators";
 import TopCreators from "@/components/discover/creators";
-import {List} from "@/components/list";
+import {List} from "@/components/discover/list";
 
 export default function DiscoverPage() {
     return (

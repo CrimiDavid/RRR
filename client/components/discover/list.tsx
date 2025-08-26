@@ -18,6 +18,8 @@ import {
   Zap,
   FileText,
 } from "lucide-react"
+import { TbFishHook } from "react-icons/tb";
+import { FaPaintBrush } from "react-icons/fa";
 
 import { cn } from "@/lib/utils";
 
@@ -30,6 +32,7 @@ import {
   TableRow,
   TableFooter,
 } from "@/components/ui/table";
+import {getPosts} from "@/lib/api/posts";
 
 export const data = [
   {
@@ -321,7 +324,9 @@ export const data = [
   },
 ]
 
-const List = () => {
+const List = async () => {
+  console.log("rendering")
+  const data = await getPosts()
   return (
     <section >
       <div className="container px-0">
@@ -354,35 +359,24 @@ const List = () => {
                 <TableRow key={index}>
                   <TableCell className="">
                     <div className="flex items-center gap-2 align-top">
-                      {item.icon}
+                      {item.type === "UI" ? <FaPaintBrush strokeWidth={2} size={25} /> : <TbFishHook strokeWidth={2} size={25}/>}
                     </div>
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    {item.category}
+                    {item.name}
                   </TableCell>
                   <TableCell className="pl-0 align-top md:pl-4">
                     <div className="flex flex-col gap-2">
-                      <div className="flex items-baseline justify-between gap-1 md:hidden">
-                        <div className="flex items-center gap-1">
-                        <span className="text-sm font-medium">
-                          {item.category}
-                        </span>
-                          <span className="text-sm text-muted-foreground">
-                          - {item.segment}
-                        </span>
-
-                        </div>
-                        <span className="text-xs text-muted-foreground">
-                        {item.year}
-                      </span>
-                      </div>
                       <p className="text-sm text-muted-foreground md:text-primary">
                         {item.description}
                       </p>
                     </div>
                   </TableCell>
                   <TableCell className="hidden text-right md:table-cell">
-                    {item.year}
+                    {item.type} {/* change to upvotes */}
+                  </TableCell>
+                  <TableCell className="hidden text-left md:table-cell">
+                    {item.creator.name}
                   </TableCell>
                 </TableRow>
             ))}
