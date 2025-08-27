@@ -335,8 +335,7 @@ const List = ({page, setPage}: ListProps) => {
   const [isPreviousData, startTransition] = React.useTransition()
 
   console.log("rendering list")
-  const {data} = useRepos(page)
-
+  let {data} = useRepos(page)
   return (
     <section >
       <div className="container px-0">
@@ -365,7 +364,7 @@ const List = ({page, setPage}: ListProps) => {
             </TableRow>
           </TableHeader>
           <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
-            {data.map((item, index: number) => (
+            {data.posts.map((item, index: number) => (
                 <TableRow key={index}>
                   <TableCell className="">
                     <div className="flex items-center gap-2 align-top">
@@ -396,6 +395,7 @@ const List = ({page, setPage}: ListProps) => {
         <footer className={"flex w-full justify-center mt-2 space-x-2"}>
           {page > 1 && (
               <button
+                  className={"hover:cursor-pointer hover:text-yellow-500"}
                   style={{opacity: isPreviousData ? 0.5 : 1}}
                   onClick={() => {
                     startTransition(() => {
@@ -408,18 +408,22 @@ const List = ({page, setPage}: ListProps) => {
               </button>
           )}
           <span>Page {page}</span>
-          <button
-              style={{opacity: isPreviousData ? 0.5 : 1}}
-              disabled={isPreviousData}
-              onClick={() => {
-                startTransition(() => {
-                  setPage(prev => prev + 1)
-                })
-                console.log("clicked")
-              }}
-          >
-            Next
-          </button>
+          {page < data.pages && (
+              <button
+                  className={"hover:cursor-pointer hover:text-yellow-500"}
+                  style={{opacity: isPreviousData ? 0.5 : 1}}
+                  disabled={isPreviousData}
+                  onClick={() => {
+                    startTransition(() => {
+                      setPage(prev => prev + 1)
+                    })
+                    console.log("clicked")
+                  }}
+              >
+                Next
+              </button>
+          )}
+
 
         </footer>
       </div>
@@ -427,4 +431,4 @@ const List = ({page, setPage}: ListProps) => {
   );
 };
 
-export {List};
+export default React.memo(List);

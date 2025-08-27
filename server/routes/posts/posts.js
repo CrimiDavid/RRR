@@ -6,8 +6,8 @@ const router = express.Router()
 router.get("/create", async (req, res) => {
     try {
         const post = await Post.create({
-            name: "useMilk",
-            description: "This is component allows you to use milk",
+            name: "useState",
+            description: "This is component allows you to use state local",
             type: "HOOK",
             creator: "68aa81e9c4e58c7038a9de40" // reference to the User _id
         });
@@ -19,9 +19,15 @@ router.get("/create", async (req, res) => {
 })
 router.get("/all", async (req, res) => {
     try {
-        const posts = await Post.find().populate("creator", "name -_id");
+        const page = parseInt(req.query.page) || 1;
+        const limit = 1;
+        const start = (page - 1) * limit;
+        const total = await Post.countDocuments()
 
-        res.json(posts);
+
+        const posts = await Post.find().populate("creator", "name -_id").skip(start).limit(limit);
+
+        res.json({posts, pages: Math.ceil(total / limit)});
     }catch (e) {
         res.status(500).json({ error: e.message });
     }
