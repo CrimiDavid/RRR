@@ -22,7 +22,7 @@ import {
 import { TbFishHook } from "react-icons/tb";
 import { FaPaintBrush } from "react-icons/fa";
 
-import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 
 import {
   Table,
@@ -333,7 +333,7 @@ interface ListProps {
 }
 const List = ({page, setPage}: ListProps) => {
   const [isPreviousData, startTransition] = React.useTransition()
-
+  const router = useRouter()
   console.log("rendering list")
   let {data} = useRepos(page)
   return (
@@ -365,7 +365,7 @@ const List = ({page, setPage}: ListProps) => {
           </TableHeader>
           <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
             {data.posts.map((item, index: number) => (
-                <TableRow key={index}>
+                <TableRow key={index} onClick={() => router.push(`/${item.creator.name}/${item._id.trim()}`)}>
                   <TableCell className="">
                     <div className="flex items-center gap-2 align-top">
                       {item.type === "UI" ? <FaPaintBrush strokeWidth={2} size={25} /> : <TbFishHook strokeWidth={2} size={25}/>}

@@ -20,7 +20,7 @@ router.get("/create", async (req, res) => {
 router.get("/all", async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
-        const limit = 1;
+        const limit = 10;
         const start = (page - 1) * limit;
         const total = await Post.countDocuments()
 
