@@ -1,0 +1,182 @@
+/* markdown.css */
+.markdown-body {
+    /* container */
+    max-width: 72ch;
+    margin-inline: auto;
+    padding: 1.5rem;
+    font: 400 1rem var(--font-sans);
+    line-height: 1.75;
+    color: var(--foreground);
+    background: transparent;
+}
+
+/* Headings */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+    color: var(--foreground);
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 1.6em 0 0.6em;
+    letter-spacing: -0.01em;
+    scroll-margin-top: 80px;
+}
+
+.markdown-body h1 { font-size: 2rem;  letter-spacing: -0.02em; }
+.markdown-body h2 { font-size: 1.6rem; }
+.markdown-body h3 { font-size: 1.25rem; }
+.markdown-body h4 { font-size: 1.1rem; }
+.markdown-body h5 { font-size: 1rem; }
+.markdown-body h6 { font-size: 0.9rem; color: var(--muted-foreground); }
+
+/* Text blocks & spacing */
+.markdown-body p,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body blockquote,
+.markdown-body pre,
+.markdown-body table,
+.markdown-body img {
+    margin: 0.9em 0;
+}
+
+/* Links – use brand primary with subtle underline */
+.markdown-body a {
+    color: var(--primary);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in oklch, var(--primary) 45%, transparent);
+}
+.markdown-body a:hover { border-bottom-color: var(--primary); }
+
+/* HR */
+.markdown-body hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 2em 0;
+}
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol { padding-left: 1.25em; }
+.markdown-body li { margin: 0.25em 0; }
+.markdown-body li > p { margin: 0.25em 0; }
+
+/* Task list checkboxes (remark-gfm) */
+.markdown-body input[type="checkbox"] {
+    appearance: none;
+    inline-size: 1rem;
+    block-size: 1rem;
+    margin-right: 0.6em;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+    vertical-align: -2px;
+    position: relative;
+}
+.markdown-body input[type="checkbox"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+.markdown-body input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+            conic-gradient(from 180deg at 50% 50%, var(--primary-foreground) 0 25%, #0000 0) 50% 55% / 55% 55% no-repeat;
+}
+
+/* Blockquotes – subtle card feel using your tokens */
+.markdown-body blockquote {
+    margin: 1.2em 0;
+    padding: 0.9em 1rem;
+    background: color-mix(in oklch, var(--card) 85%, var(--background));
+    color: var(--muted-foreground);
+    border-left: 4px solid var(--border);
+    border-radius: 0.5rem;
+}
+.markdown-body blockquote > :first-child { margin-top: 0; }
+.markdown-body blockquote > :last-child { margin-bottom: 0; }
+
+/* Inline code */
+.markdown-body code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    padding: 0.15em 0.35em;
+    border-radius: 0.375rem;
+    color: inherit;
+    background: color-mix(in oklch, var(--muted) 65%, transparent);
+    border: 1px solid color-mix(in oklch, var(--border) 60%, transparent);
+}
+
+/* Fenced code (Prism handles syntax colors).
+   Background uses card to harmonize with your theme. */
+.markdown-body pre {
+    overflow: auto;
+    border-radius: 0.6rem;
+    padding: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 0 color-mix(in oklch, var(--foreground) 5%, transparent) inset;
+}
+.markdown-body pre code {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    font-size: 0.95em;
+}
+
+/* Tables */
+.markdown-body table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    overflow: hidden;
+    background: var(--card);
+}
+.markdown-body th,
+.markdown-body td {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+.markdown-body thead th {
+    text-align: left;
+    background: color-mix(in oklch, var(--muted) 60%, transparent);
+    color: var(--foreground);
+    font-weight: 600;
+}
+.markdown-body tbody tr:last-child td { border-bottom: 0; }
+
+/* Images */
+.markdown-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0.6rem;
+    border: 1px solid var(--border);
+    background: var(--card);
+}
+
+/* Details / Summary */
+.markdown-body details {
+    border: 1px solid var(--border);
+    border-radius: 0.6rem;
+    padding: 0.75rem 1rem;
+    background: var(--card);
+}
+.markdown-body summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+/* Inline HTML (safe baseline) */
+.markdown-body span[style] { line-height: inherit; }
+
+/* Subtle callouts for strong/emphasis */
+.markdown-body strong { color: var(--foreground); }
+.markdown-body em { color: color-mix(in oklch, var(--foreground) 85%, var(--secondary)); }

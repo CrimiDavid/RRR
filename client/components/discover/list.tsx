@@ -49,7 +49,7 @@ const List = ({page, selection, setPage}: ListProps) => {
                 </span>
               </TableHead>
               <TableHead className="hidden text-right font-bold text-primary md:table-cell">
-                Type
+                Likes
               </TableHead>
 
               <TableHead className="hidden font-bold text-primary md:table-cell">
@@ -76,7 +76,7 @@ const List = ({page, selection, setPage}: ListProps) => {
                     </div>
                   </TableCell>
                   <TableCell className="hidden text-right md:table-cell">
-                    {item.type} {/* change to upvotes */}
+                    {item.likes}
                   </TableCell>
                   <TableCell className="hidden text-left md:table-cell">
                     {item.creator.name}
