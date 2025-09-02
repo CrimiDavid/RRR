@@ -3,12 +3,9 @@ export default function Sort({ value, onSort }) {
         <label>
             Sort by:
             <select
-                value={value}
-                onChange={(event) => onSort(event.target.value)}>
-                <option value="created">Created</option>
-                <option value="updated">Updated</option>
-                <option value="pushed">Pushed</option>
-                <option value="full_name">Name</option>
+                onChange={(event) => onSort(event.target.value.split(" "))}>
+                <option value="likes desc">Likes high-low</option>
+                <option value="likes asc">Likes low-high</option>
             </select>
         </label>
     )

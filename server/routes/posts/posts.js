@@ -19,13 +19,22 @@ router.get("/create", async (req, res) => {
 })
 router.get("/all", async (req, res) => {
     try {
+        const {sort = "likes", order = "desc"} = req.query;
         const page = parseInt(req.query.page) || 1;
         const limit = 10;
         const start = (page - 1) * limit;
         const total = await Post.countDocuments()
 
 
-        const posts = await Post.find().populate("creator", "name -_id").skip(start).limit(limit);
+        const sortOrder = order === "asc" ? 1 : -1;
+        const allowedSortFields = ["likes"]
+        const safeSort = allowedSortFields.includes(sort) ? sort : "likes";
+        console.log(safeSort + sortOrder)
+        const posts = await Post.find()
+            .populate("creator", "name -_id")
+            .sort({[safeSort] : sortOrder})
+            .skip(start)
+            .limit(limit);
 
         res.json({posts, pages: Math.ceil(total / limit)});
     }catch (e) {
