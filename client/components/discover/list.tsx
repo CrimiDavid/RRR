@@ -14,22 +14,20 @@ import {
   TableRow,
   TableFooter,
 } from "@/components/ui/table";
-import {getPosts, PAGE_SIZE} from "@/lib/api/posts";
+
 import React from "react";
-import {useRepos} from "@/hooks/useList";
 
 
 
 interface ListProps {
   page: number,
-  selection: string[]
+  data: any,
   setPage: (page: number) => void
 }
-const List = ({page, selection, setPage}: ListProps) => {
+const List = ({page, data, setPage}: ListProps) => {
   const [isPreviousData, startTransition] = React.useTransition()
   const router = useRouter()
   console.log("rendering list")
-  let {data} = useRepos(page, selection)
   return (
     <section >
       <div className="container px-0">
@@ -101,7 +99,7 @@ const List = ({page, selection, setPage}: ListProps) => {
                 Previous
               </button>
           )}
-          <span>Page {page}</span>
+          <span>Page {page} of {data.pages}</span>
           {page < data.pages && (
               <button
                   className={"hover:cursor-pointer hover:text-yellow-500"}

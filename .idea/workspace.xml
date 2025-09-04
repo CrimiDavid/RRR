@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8b060a-420d-4979-9074-8371c8229d89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/components/discover/switch.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/components/discover/list-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/list-manager.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/components/discover/sort-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/sort-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/list.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/list.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/switch.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/switch.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/hooks/useList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/hooks/useList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/lib/api/posts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/lib/api/posts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/posts/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/posts/posts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,7 +94,7 @@
       <workItem from="1756228937651" duration="5759000" />
       <workItem from="1756263565704" duration="3279000" />
       <workItem from="1756753282089" duration="22103000" />
-      <workItem from="1756955493326" duration="5500000" />
+      <workItem from="1756955493326" duration="6529000" />
     </task>
     <servers />
   </component>

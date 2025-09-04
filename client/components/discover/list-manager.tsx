@@ -4,11 +4,15 @@ import React from "react";
 import List  from "@/components/discover/list";
 import Sort from "@/components/discover/sort-button";
 import {Switch} from "@/components/discover/switch";
+import {useRepos} from "@/hooks/useList";
 
 export default function ListManager() {
     const [page, setPage] = React.useState<number>(1);
     const [selection, setSelection] = React.useState<string[]>(['likes', 'desc'])
-    const [value, setValue] = React.useState("UI")
+    const [value, setValue] = React.useState(null)
+
+    // get list data
+    const {data} = useRepos(page, selection, value)
 
     const onSort = (value: string[]) => {
         setSelection(value)
@@ -23,7 +27,6 @@ export default function ListManager() {
             }
         });
     }
-    console.log(selection)
     return (
         <div>
             <div className={"flex space-x-2 items-center"}>
@@ -31,7 +34,7 @@ export default function ListManager() {
                 <Sort onSort={onSort }/>
             </div>
 
-            <List page={page} selection={selection} setPage={setPage}/>
+            <List data={data} page={page} setPage={setPage}/>
         </div>
     )
 }

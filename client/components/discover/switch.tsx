@@ -1,7 +1,8 @@
 "use client"
 
 import React from "react"
-
+import { TbFishHook } from "react-icons/tb";
+import { FaPaintBrush } from "react-icons/fa";
 export function Switch({value, onClick}) {
 
 
@@ -9,7 +10,7 @@ export function Switch({value, onClick}) {
         <div className="border b-2 p-2">
             <div className={"flex"}>
                 <SwitchButton name={"UI"} onClick={onClick} current={value}/>
-                <SwitchButton name={"Hook"} onClick={onClick} current={value}/>
+                <SwitchButton name={"HOOK"} onClick={onClick} current={value}/>
             </div>
 
         </div>

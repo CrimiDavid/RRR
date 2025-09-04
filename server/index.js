@@ -1,7 +1,7 @@
 import express from 'express';
 import { connectDB } from './data/db.js';
 import cors from "cors";
-
+import morgan from "morgan"
 //route imports
 import discoverRoute from "./routes/discover/discover.js"
 import postsRoute from "./routes/posts/posts.js"
@@ -12,6 +12,7 @@ await connectDB();
 
 //middleware
 app.use(cors());
+app.use(morgan("dev"))
 
 //routes
 app.use("/discover", discoverRoute);
