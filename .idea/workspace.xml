@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8b060a-420d-4979-9074-8371c8229d89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/app/[creator]/[id]/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/components/posts/post-page-small.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/components/discover/switch.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/app/[creator]/[id]/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/app/[creator]/[id]/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/list-manager.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/list-manager.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/components/discover/sort-button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/components/discover/sort-button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/posts/posts.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/posts/posts.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +20,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -52,8 +52,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client/app/[creator]/[id]" />
       <recent name="$PROJECT_DIR$/client/components/discover" />
+      <recent name="$PROJECT_DIR$/client/app/[creator]/[id]" />
       <recent name="$PROJECT_DIR$/server" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -87,7 +87,8 @@
       <workItem from="1756160614664" duration="5562000" />
       <workItem from="1756228937651" duration="5759000" />
       <workItem from="1756263565704" duration="3279000" />
-      <workItem from="1756753282089" duration="21747000" />
+      <workItem from="1756753282089" duration="22103000" />
+      <workItem from="1756955493326" duration="5500000" />
     </task>
     <servers />
   </component>

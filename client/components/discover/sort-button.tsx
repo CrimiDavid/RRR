@@ -1,4 +1,4 @@
-export default function Sort({ value, onSort }) {
+export default function Sort({onSort }) {
     return (
         <label>
             Sort by:
