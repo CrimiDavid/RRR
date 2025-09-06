@@ -3,7 +3,12 @@
 import React from "react"
 import { TbFishHook } from "react-icons/tb";
 import { FaPaintBrush } from "react-icons/fa";
-export function Switch({value, onClick}) {
+
+interface SwitchProps {
+    value: string | null,
+    onClick: (value: string) => void
+}
+export function Switch({value, onClick} : SwitchProps) {
 
 
     return (
@@ -17,7 +22,12 @@ export function Switch({value, onClick}) {
     )
 }
 
-function SwitchButton({ name, onClick, current }) {
+interface SwitchButtonProps {
+    name: string,
+    onClick: (value: string) => void,
+    current: string | null
+}
+function SwitchButton({ name, onClick, current }: SwitchButtonProps) {
     const selected = name === current;
 
     return selected ? (

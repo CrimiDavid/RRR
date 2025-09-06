@@ -12,22 +12,22 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter,
 } from "@/components/ui/table";
 
 import React from "react";
+import {Data} from "@/types/discover-data";
 
 
 
 interface ListProps {
   page: number,
-  data: any,
-  setPage: (page: number) => void
+  data: Data,
+  setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 const List = ({page, data, setPage}: ListProps) => {
   const [isPreviousData, startTransition] = React.useTransition()
   const router = useRouter()
-  console.log("rendering list")
+  console.log(data)
   return (
     <section >
       <div className="container px-0">
@@ -57,7 +57,7 @@ const List = ({page, data, setPage}: ListProps) => {
           </TableHeader>
           <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
             {data.posts.map((item, index: number) => (
-                <TableRow key={index} onClick={() => router.push(`/${item.creator.name}/${item._id.trim()}`)}>
+                <TableRow className={"hover:cursor-pointer"} key={index} onClick={() => router.push(`/${item.creator.name}/${item._id.trim()}`)}>
                   <TableCell className="">
                     <div className="flex items-center gap-2 align-top">
                       {item.type === "UI" ? <FaPaintBrush strokeWidth={2} size={25} /> : <TbFishHook strokeWidth={2} size={25}/>}
@@ -91,7 +91,7 @@ const List = ({page, data, setPage}: ListProps) => {
                   style={{opacity: isPreviousData ? 0.5 : 1}}
                   onClick={() => {
                     startTransition(() => {
-                      setPage((p) => p - 1)
+                      setPage(p => p - 1)
                     })
                   }}
                   disabled={isPreviousData || page === 1}

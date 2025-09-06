@@ -1,5 +1,6 @@
 "use client"
-import { useEffect, useState } from "react";
+import {useCallback, useEffect, useState} from "react";
+import {useSession} from "@/hooks/use-session";
 
 const words = ["Creators", "Builders", "Innovators", "Dreamers", "Heroes", "Time Savers"];
 

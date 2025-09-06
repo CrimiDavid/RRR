@@ -1,4 +1,7 @@
-export default function Sort({onSort }) {
+interface SortProps {
+    onSort: (value: string[]) => void;
+}
+export default function Sort({onSort} : SortProps) {
     return (
         <label>
             Sort by:
