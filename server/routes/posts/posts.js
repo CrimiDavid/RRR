@@ -1,7 +1,7 @@
 import express from "express"
 import Post from "../../schemas/posts_schema.js";
+import {queryValidator} from "../../utils/posts/query-validator.js";
 const router = express.Router()
-
 
 router.get("/create", async (req, res) => {
     try {
@@ -26,11 +26,11 @@ router.get("/all", async (req, res) => {
         const start = (page - 1) * limit;
 
         const sortOrder = order === "asc" ? 1 : -1;
-        const allowedSortFields = ["likes"];
-        const safeSort = allowedSortFields.includes(sort) ? sort : "likes";
-        const safeFilter = ["UI", "HOOK"].includes(filter) ? filter : null;
 
-        // 👇 build query dynamically
+        // validate fields
+        const safeSort = queryValidator(sort, "likes", ["likes"])
+        const safeFilter = queryValidator(filter, null, ["UI", "HOOK"])
+
         const query = {};
         if (safeFilter) {
             query.type = safeFilter;
