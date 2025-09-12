@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 
 import { toNodeHandler, fromNodeHeaders } from "better-auth/node";
 import { auth } from "./lib/auth.js";
-
+import { Session } from "./utils/users/get-session.js";
 dotenv.config();
 //route imports
 import discoverRoute from "./routes/discover/discover.js";

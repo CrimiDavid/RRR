@@ -1,48 +1,10 @@
-"use client";
-import { FormEvent, useState } from "react";
-import { authClient } from "@/auth-client";
+// app/users/login/page.tsx
+import LoginForm from "@/app/users/login/login-form";
 
-export default function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLogin = async (e: FormEvent) => {
-    e.preventDefault();
-    try {
-      const { data, error } = await authClient.signIn.email({
-        email,
-        password,
-      });
-
-      if (error) {
-        console.error("Login failed:", error);
-        return;
-      }
-
-      console.log("Login successful:", data);
-      // Redirect or update UI
-    } catch (error) {
-      console.error("Login error:", error);
-    }
-  };
-
+export default function LoginPage() {
   return (
-    <form onSubmit={handleLogin}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="flex min-h-screen w-full items-center">
+      <LoginForm />
+    </div>
   );
 }

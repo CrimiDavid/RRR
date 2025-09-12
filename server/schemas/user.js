@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 
-
-const UserSchema = new mongoose.Schema( {
+const UserSchema = new mongoose.Schema(
+  {
     name: { type: String, required: true },
-    fame: { type: Number, default: 40},
-})
+    fame: { type: Number, default: 40 },
+  },
+  { collection: "user" }
+);
 
 const User = mongoose.model("User", UserSchema);
 
