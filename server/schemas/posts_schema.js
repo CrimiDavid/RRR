@@ -13,6 +13,7 @@ const PostSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  s3Object: String,
 });
 
 const Post = mongoose.model("Post", PostSchema);
