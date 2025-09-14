@@ -2,11 +2,16 @@ import express from "express";
 import Post from "../../schemas/posts_schema.js";
 import { queryValidator } from "../../utils/posts/query-validator.js";
 import { Session } from "../../utils/users/get-session.js";
+import multer from "multer";
+
 const router = express.Router();
 
-router.post("/create", async (req, res) => {
+const upload = multer({ storage: multer.memoryStorage() });
+router.post("/create", upload.single("file"), async (req, res) => {
   const { name, description, type } = req.body;
   const creator = await Session(req);
+  const file = req.file;
+  console.log(file);
   console.log(creator);
   try {
     const post = await Post.create({
