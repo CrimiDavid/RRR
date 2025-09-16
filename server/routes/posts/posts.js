@@ -2,10 +2,16 @@ import express from "express";
 import Post from "../../schemas/posts_schema.js";
 import { queryValidator } from "../../utils/posts/query-validator.js";
 import { Session } from "../../utils/users/get-session.js";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  PutObjectCommand,
+  GetObjectCommand,
+} from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+
 import multer from "multer";
 import dotenv from "dotenv";
-
+import mongoose from "mongoose";
 dotenv.config();
 const router = express.Router();
 const upload = multer({ storage: multer.memoryStorage() });
@@ -20,24 +26,31 @@ const s3 = new S3Client({
     secretAccessKey: SECRET_KEY,
   },
 });
-router.post("/create", upload.single("file"), async (req, res) => {
+
+router.post("/create", upload.array("files"), async (req, res) => {
   const { name, description, type } = req.body;
   const creator = await Session(req);
-  const file = req.file;
-  console.log(file);
-  console.log(creator);
-  try {
-    const key = `${creator}/${file.originalname}`;
-    const params = {
-      Bucket: process.env.S3_BUCKET,
-      Key: key,
-      Body: file.buffer,
-      ContentType: file.mimetype,
-    };
-    const command = new PutObjectCommand(params);
-    await s3.send(command);
+  const files = req.files;
 
-    const s3Object = `s3://${process.env.S3_BUCKET}/${key}`;
+  const dir = `${creator}/${name}`;
+  try {
+    const uploadedKeys = await Promise.all(
+      files.map(async (file) => {
+        const key = `${dir}/${file.originalname}`;
+        const params = {
+          Bucket: process.env.S3_BUCKET,
+          Key: key,
+          Body: file.buffer,
+          ContentType: file.mimetype,
+        };
+        const command = new PutObjectCommand(params);
+        await s3.send(command);
+        return key;
+      })
+    );
+
+    const s3Object = uploadedKeys.map((key) => key);
+
     const post = await Post.create({
       name,
       description,
@@ -49,6 +62,39 @@ router.post("/create", upload.single("file"), async (req, res) => {
     res.json(post);
   } catch (e) {
     res.status(500).json({ error: e.message });
+  }
+});
+
+router.get("/:creator/:name", async (req, res) => {
+  try {
+    const { creator } = req.params;
+
+    const post = await Post.findOne(
+      {
+        _id: new mongoose.Types.ObjectId(creator),
+      },
+      "s3Object"
+    );
+    if (!post) {
+      return res.status(404).send("Post not found");
+    }
+    const keys = post.s3Object;
+
+    const result = await Promise.all(
+      keys.map(async (key) => {
+        const command = new GetObjectCommand({
+          Bucket: process.env.S3_BUCKET,
+          Key: key,
+        });
+
+        return await getSignedUrl(s3, command, 3600);
+      })
+    );
+
+    res.send(result);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server error");
   }
 });
 

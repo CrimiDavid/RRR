@@ -1,17 +1,17 @@
-"use client"
-"use client"
-import React from "react"
-import Markdown from "react-markdown"
-import remarkGfm from "remark-gfm"
-import rehypePrism from "rehype-prism-plus"
+"use client";
+import React from "react";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypePrism from "rehype-prism-plus";
 // keep your prism CSS import
-import "prismjs/themes/prism-tomorrow.css"
-import "./style.css"
-
+import "prismjs/themes/prism-tomorrow.css";
+import "./style.css";
+import { useParams } from "next/navigation";
 
 export function Demo() {
-
-    const markdown = `
+  const { creator, id } = useParams<{ creator: string; id: string }>();
+  console.log(creator, id);
+  const markdown = `
 # Heading 1
 ## Heading 2
 ### Heading 3
@@ -71,18 +71,13 @@ function greet(name) {
 
 **Inline HTML:**  
 <span style="color:red;">This is red text (if supported)</span>
-`
+`;
 
-    return (
-        <div className="markdown-body">
-            <Markdown
-                remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypePrism]}
-            >
-                {markdown}
-            </Markdown>
-        </div>
-
-
-    )
+  return (
+    <div className="markdown-body">
+      <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypePrism]}>
+        {markdown}
+      </Markdown>
+    </div>
+  );
 }

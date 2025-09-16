@@ -21,7 +21,8 @@ type formState = {
     name: string;
     description: string;
     type: string;
-    file?: File;
+    codeFile?: File;
+    readmeFile?: File;
   };
 };
 type Action =
@@ -32,7 +33,13 @@ type Action =
 
 const initialState: formState = {
   currentStep: 1,
-  formData: { name: "", description: "", type: "HOOK", file: undefined },
+  formData: {
+    name: "",
+    description: "",
+    type: "HOOK",
+    codeFile: undefined,
+    readmeFile: undefined,
+  },
 };
 
 const reducer = (state: formState, action: Action): formState => {
@@ -61,9 +68,12 @@ export function DialogDemo() {
       formData.append("type", state.formData.type);
       formData.append("name", state.formData.name);
       formData.append("description", state.formData.description);
-      if (state.formData.file) {
-        formData.append("file", state.formData.file); // field name must match backend
+      // ✅ append BOTH files under the SAME field name expected by multer: "files"
+      if (!state.formData.codeFile || !state.formData.readmeFile) {
+        throw new Error("Please select both Code and Readme files.");
       }
+      formData.append("files", state.formData.codeFile);
+      formData.append("files", state.formData.readmeFile);
 
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/posts/create`,
@@ -203,31 +213,36 @@ export function DialogDemo() {
                 {/* Step 2 */}
                 {state.currentStep === 2 && (
                   <div className="grid gap-3">
-                    <Label htmlFor="file-upload">Code:</Label>
+                    <Label htmlFor="code-upload">Code:</Label>
                     <Input
-                      id="file-upload"
+                      id="code-upload"
+                      name="codeFile"
                       type="file"
                       onChange={(e) =>
                         dispatch({
                           type: "change",
-                          key: "file",
+                          key: "codeFile",
                           value: e.target.files?.[0],
                         })
                       }
                       accept=".js,.ts,.jsx,.tsx,.json"
+                      required
                     />
-                    <Label htmlFor="file-upload">Read Me:</Label>
+
+                    <Label htmlFor="readme-upload">Read Me:</Label>
                     <Input
-                      id="file-upload"
+                      id="readme-upload"
+                      name="readmeFile"
                       type="file"
                       onChange={(e) =>
                         dispatch({
                           type: "change",
-                          key: "file",
+                          key: "readmeFile",
                           value: e.target.files?.[0],
                         })
                       }
-                      accept=".md"
+                      accept=".md,.markdown,.mdx"
+                      required
                     />
                   </div>
                 )}
@@ -256,9 +271,13 @@ export function DialogDemo() {
                     <div>
                       <Label className="font-semibold">File:</Label>
                       <p className="text-sm text-gray-600">
-                        {state.formData.file
-                          ? state.formData.file.name
-                          : "No file selected"}
+                        {state.formData.codeFile
+                          ? state.formData.codeFile.name
+                          : "No code file"}{" "}
+                        /{" "}
+                        {state.formData.readmeFile
+                          ? state.formData.readmeFile.name
+                          : "No readme"}
                       </p>
                     </div>
                   </div>
