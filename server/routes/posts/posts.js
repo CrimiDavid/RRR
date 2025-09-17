@@ -65,7 +65,7 @@ router.post("/create", upload.array("files"), async (req, res) => {
   }
 });
 
-router.get("/:creator/:name", async (req, res) => {
+router.get("/:creator", async (req, res) => {
   try {
     const { creator } = req.params;
 

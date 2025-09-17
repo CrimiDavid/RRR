@@ -1,8 +1,10 @@
 import ResizablePanels from "@/components/posts/post-page";
 import ResizablePanelsSmall from "@/components/posts/post-page-small";
-
-export default async function Post() {
-  await new Promise((res) => setTimeout(res, 2000));
+import { testSanity } from "@/lib/api/posts";
+export default async function Post({ params }) {
+  const { creator } = await params;
+  console.log(creator);
+  const sanity = testSanity(creator);
   return (
     <div>
       <div className="block lg:hidden">
@@ -10,7 +12,7 @@ export default async function Post() {
       </div>
 
       <div className="hidden lg:block">
-        <ResizablePanels />
+        <ResizablePanels promise={sanity} />
       </div>
     </div>
   );
