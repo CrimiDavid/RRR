@@ -1,10 +1,9 @@
 import ResizablePanels from "@/components/posts/post-page";
 import ResizablePanelsSmall from "@/components/posts/post-page-small";
-import { testSanity } from "@/lib/api/posts";
+import { getPostFiles } from "@/lib/api/posts";
 export default async function Post({ params }) {
-  const { creator } = await params;
-  console.log(creator);
-  const sanity = testSanity(creator);
+  const { creator, id } = await params;
+  const sanity = getPostFiles(creator, id);
   return (
     <div>
       <div className="block lg:hidden">

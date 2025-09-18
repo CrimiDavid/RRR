@@ -65,13 +65,14 @@ router.post("/create", upload.array("files"), async (req, res) => {
   }
 });
 
-router.get("/:creator", async (req, res) => {
+router.get("/:creator/:name", async (req, res) => {
   try {
-    const { creator } = req.params;
-
+    const { creator, name } = req.params;
+    console.log(name);
     const post = await Post.findOne(
       {
-        _id: new mongoose.Types.ObjectId(creator),
+        creator: new mongoose.Types.ObjectId(creator),
+        name,
       },
       "s3Object"
     );
@@ -119,7 +120,7 @@ router.get("/all", async (req, res) => {
     const total = await Post.countDocuments(query);
 
     const posts = await Post.find(query)
-      .populate("creator", "name -_id")
+      .populate("creator", "name")
       .sort({ [safeSort]: sortOrder })
       .skip(start)
       .limit(limit);

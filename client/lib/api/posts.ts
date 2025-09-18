@@ -19,9 +19,11 @@ export const getPosts = async (page, selection, filter) => {
 };
 
 // TODO refactor (this temp returns just the md)
-export const testSanity = async (creator: string) => {
+export const getPostFiles = async (creator: string, id: string) => {
   try {
-    const response = await fetch(`http://localhost:8000/posts/${creator}`);
+    const response = await fetch(
+      `http://localhost:8000/posts/${creator}/${id}`
+    );
     if (!response.ok) throw new Error("oppa");
     const text = await response.json();
     const fetchText = await fetch(text[1]);

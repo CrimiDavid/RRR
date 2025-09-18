@@ -53,7 +53,7 @@ const List = ({ page, data, setPage }: ListProps) => {
 
           <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
             {data.posts.map((item: any, index: number) => {
-              const href = `/${item._id}/${item.name}`;
+              const href = `/${item.creator._id}/${item.name}`;
               return (
                 <TableRow key={index} className="hover:bg-muted">
                   <TableCell>
