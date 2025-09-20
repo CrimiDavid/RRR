@@ -59,7 +59,7 @@ const reducer = (state: formState, action: Action): formState => {
 export function DialogDemo() {
   const [state, dispatch] = React.useReducer(reducer, initialState);
   const [isOpen, setIsOpen] = React.useState(false);
-
+  console.log(state);
   const handleSubmit = async (e?: FormEvent) => {
     e?.preventDefault();
 

@@ -15,9 +15,27 @@ import {
 
 import React from "react";
 
+interface Creator {
+  _id: string;
+  name: string;
+}
+
+interface Post {
+  name: string;
+  description: string;
+  likes: number;
+  type: string;
+  creator: Creator;
+}
+
+interface PostsResponse {
+  posts: Post[];
+  pages: number;
+}
+
 interface ListProps {
   page: number;
-  data: any;
+  data: PostsResponse;
   setPage: (page: number) => void;
 }
 
@@ -52,7 +70,7 @@ const List = ({ page, data, setPage }: ListProps) => {
           </TableHeader>
 
           <TableBody style={{ opacity: isPreviousData ? 0.5 : 1 }}>
-            {data.posts.map((item: any, index: number) => {
+            {data.posts.map((item: Post, index: number) => {
               const href = `/${item.creator._id}/${item.name}`;
               return (
                 <TableRow key={index} className="hover:bg-muted">
@@ -102,7 +120,7 @@ const List = ({ page, data, setPage }: ListProps) => {
               className="hover:cursor-pointer hover:text-yellow-500"
               style={{ opacity: isPreviousData ? 0.5 : 1 }}
               onClick={() => {
-                startTransition(() => setPage((p) => p - 1));
+                startTransition(() => setPage(page - 1));
               }}
               disabled={isPreviousData || page === 1}
             >
@@ -118,7 +136,7 @@ const List = ({ page, data, setPage }: ListProps) => {
               style={{ opacity: isPreviousData ? 0.5 : 1 }}
               disabled={isPreviousData}
               onClick={() => {
-                startTransition(() => setPage((prev) => prev + 1));
+                startTransition(() => setPage(page + 1));
               }}
             >
               Next

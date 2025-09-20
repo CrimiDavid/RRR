@@ -1,17 +1,20 @@
 "use client";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
-import { Demo } from "@/components/posts/md-parser";
+import { LeftContent } from "@/components/posts/md-parser";
 import React from "react";
-export default function ResizablePanels({ promise }) {
-  const md = React.use(promise);
-  console.log(md);
+interface ResizablePanelsProps {
+  promise: Promise<string[]>;
+}
+
+export default function ResizablePanels({ promise }: ResizablePanelsProps) {
+  const [code, md] = React.use(promise);
   return (
     <div className="h-screen">
       <PanelGroup direction="horizontal">
         {/* Left Panel */}
         <Panel defaultSize={50} minSize={20}>
           <div className="h-full p-4 overflow-auto">
-            <Demo markdown={md} />
+            <LeftContent markdown={md} code={code} />
           </div>
         </Panel>
 

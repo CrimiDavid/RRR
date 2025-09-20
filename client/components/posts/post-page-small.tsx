@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Demo } from "@/components/posts/md-parser";
 
 export default function ResizablePanelsSmall() {
   return (
@@ -24,9 +23,7 @@ export default function ResizablePanelsSmall() {
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent value="read">
-          <div className="h-full p-4 overflow-auto">
-            <Demo />
-          </div>
+          <div className="h-full p-4 overflow-auto">{/* <Demo /> */}</div>
         </TabsContent>
         <TabsContent value="code">
           <div className="h-full p-4 overflow-auto">
