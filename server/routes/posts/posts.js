@@ -131,6 +131,27 @@ router.get("/all", async (req, res) => {
   }
 });
 
+router.post("/favorite/:creator/:post", async (req, res) => {
+  try {
+    const userId = await Session(req);
+    const { creator, post } = req.body;
+    const postId = creator + post;
+
+    // Find the user
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const isFavorited = user.favorites.includes(postId);
+
+    if (isFavorited) {
+      res.json({ status: true });
+    }
+    res.json({ status: true });
+  } catch (e) {
+    res.send(e);
+  }
+});
 router.post("/favorite", async (req, res) => {
   try {
     const userId = await Session(req);
