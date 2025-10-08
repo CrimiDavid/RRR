@@ -12,12 +12,16 @@ interface MarkDownContentProps {
   markdown: string;
   code: string; // plain text
   language?: string; // optional, e.g. "tsx" | "js" | "py"
+  creator: string;
+  post: string;
 }
 
 export function LeftContent({
   markdown,
   code,
   language = "tsx",
+  creator,
+  post,
 }: MarkDownContentProps) {
   const [tab, setTab] = React.useState("Readme");
   const onClick = (name: string) => setTab(name);
@@ -31,7 +35,7 @@ export function LeftContent({
     <div>
       <div className="flex justify-between items-center">
         <Switch value={tab} onClick={onClick} options={["Readme", "Code"]} />
-        <Favorite />
+        <Favorite creator={creator} post={post} />
       </div>
       <div className="markdown-body">
         <Markdown

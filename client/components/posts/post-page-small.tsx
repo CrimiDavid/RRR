@@ -13,15 +13,27 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Favorite } from "@/components/posts/favorite-star";
 
-export default function ResizablePanelsSmall() {
+interface ResizablePanelsSmallProps {
+  creator: string;
+  post: string;
+}
+
+export default function ResizablePanelsSmall({
+  creator,
+  post,
+}: ResizablePanelsSmallProps) {
   return (
     <div className="flex w-full h-screen flex-col gap-6 p-4">
       <Tabs defaultValue="read">
-        <TabsList>
-          <TabsTrigger value="read">Readme</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
+        <div className="flex justify-between items-center mb-4">
+          <TabsList>
+            <TabsTrigger value="read">Readme</TabsTrigger>
+            <TabsTrigger value="code">Code</TabsTrigger>
+          </TabsList>
+          <Favorite creator={creator} post={post} />
+        </div>
         <TabsContent value="read">
           <div className="h-full p-4 overflow-auto">{/* <Demo /> */}</div>
         </TabsContent>

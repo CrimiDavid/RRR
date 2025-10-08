@@ -1,5 +1,6 @@
 import express from "express";
 import Post from "../../schemas/posts_schema.js";
+import User from "../../schemas/user.js";
 import { queryValidator } from "../../utils/posts/query-validator.js";
 import { Session } from "../../utils/users/get-session.js";
 import {
@@ -124,11 +125,41 @@ router.get("/all", async (req, res) => {
       .sort({ [safeSort]: sortOrder })
       .skip(start)
       .limit(limit);
-
     res.json({ posts, pages: Math.ceil(total / limit) });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
+router.post("/favorite", async (req, res) => {
+  try {
+    const userId = await Session(req);
+    const { creator, post } = req.body;
+    const postId = creator + post;
+
+    // Find the user
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Check if post is already in favorites
+    const isFavorited = user.favorites.includes(postId);
+
+    if (isFavorited) {
+      // Remove from favorites
+      user.favorites = user.favorites.filter((id) => id !== postId);
+      await user.save();
+      res.json({ favorited: false, message: "Post removed from favorites" });
+    } else {
+      // Add to favorites
+      user.favorites.push(postId);
+      await user.save();
+      res.json({ favorited: true, message: "Post added to favorites" });
+    }
+  } catch (e) {
+    console.error("Favorite error:", e);
+    res.status(500).json({ error: e.message });
+  }
+});
 export default router;

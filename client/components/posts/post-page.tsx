@@ -4,9 +4,15 @@ import { LeftContent } from "@/components/posts/md-parser";
 import React from "react";
 interface ResizablePanelsProps {
   promise: Promise<string[]>;
+  creator: string;
+  post: string;
 }
 
-export default function ResizablePanels({ promise }: ResizablePanelsProps) {
+export default function ResizablePanels({
+  promise,
+  creator,
+  post,
+}: ResizablePanelsProps) {
   const [code, md] = React.use(promise);
   return (
     <div className="h-screen">
@@ -14,7 +20,12 @@ export default function ResizablePanels({ promise }: ResizablePanelsProps) {
         {/* Left Panel */}
         <Panel defaultSize={50} minSize={20}>
           <div className="h-full p-4 overflow-auto">
-            <LeftContent markdown={md} code={code} />
+            <LeftContent
+              markdown={md}
+              code={code}
+              creator={creator}
+              post={post}
+            />
           </div>
         </Panel>
 

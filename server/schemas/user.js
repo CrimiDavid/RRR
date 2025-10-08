@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     fame: { type: Number, default: 40 },
+    favorites: [{ type: String }], // Array of post IDs (creator + post name)
   },
   { collection: "user" }
 );

@@ -16,11 +16,11 @@ export default async function Post({
   return (
     <div>
       <div className="block lg:hidden">
-        <ResizablePanelsSmall />
+        <ResizablePanelsSmall creator={creator} post={id} />
       </div>
 
       <div className="hidden lg:block">
-        <ResizablePanels promise={files} />
+        <ResizablePanels promise={files} creator={creator} post={id} />
       </div>
     </div>
   );
