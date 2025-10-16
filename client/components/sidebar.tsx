@@ -1,3 +1,4 @@
+"use client";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
 
 import {
@@ -12,36 +13,24 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import { getFavoritedPosts } from "@/lib/api/posts";
+import { useEffect, useState } from "react";
 
 export function AppSidebar() {
+  const [favs, setFavs] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getFavoritedPosts();
+        console.log(data); // Now this will log the actual JSON data
+        setFavs(data);
+      } catch (error) {
+        console.error("Error fetching favorited posts:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Sidebar>
       <SidebarHeader>
@@ -56,19 +45,43 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-xs font-medium text-muted-foreground/70 uppercase tracking-wider">
+            Favorites
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {favs.length > 0 ? (
+                favs.map((fav, index) => (
+                  <SidebarMenuItem key={index}>
+                    <SidebarMenuButton
+                      asChild
+                      className="group h-9 px-3 hover:bg-accent/50 transition-colors duration-200"
+                    >
+                      <a className="flex items-center gap-3 w-full">
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm truncate text-foreground group-hover:text-foreground/90">
+                            {fav.name}
+                          </div>
+                          <div className="text-xs text-muted-foreground truncate mt-0.5">
+                            {fav.description}
+                          </div>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                            {fav.type}
+                          </span>
+                        </div>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))
+              ) : (
+                <div className="px-3 py-6 text-center">
+                  <div className="text-sm text-muted-foreground">
+                    No favorites yet
+                  </div>
+                </div>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

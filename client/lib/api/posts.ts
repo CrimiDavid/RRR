@@ -67,3 +67,17 @@ export const getPostFiles = async (
     throw new Error("Failed to fetch post files");
   }
 };
+
+export const getFavoritedPosts = async () => {
+  try {
+    const response = await fetch("http://localhost:8000/posts/all-favorited", {
+      credentials: "include",
+    });
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    }
+  } catch (e) {
+    throw new Error("Failed to fetch favorite posts");
+  }
+};

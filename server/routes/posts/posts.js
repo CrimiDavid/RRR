@@ -135,7 +135,7 @@ router.get("/favorite/:creator/:post", async (req, res) => {
   try {
     const userId = await Session(req);
     const { creator, post } = req.params;
-    const postId = creator + post;
+    const postId = [creator, post].join(",");
 
     // Find the user
     const user = await User.findById(userId);
@@ -190,6 +190,30 @@ router.get("/all-favorited", async (req, res) => {
   if (!user) {
     return res.status(404).json({ error: "User not found" });
   }
-  user.favorites.map({ id });
+
+  const favoriteIds = user.favorites.map((id) => {
+    const parts = id.split(",");
+    return { creator: parts[0], name: parts[1] };
+  });
+
+  // Find all associated posts and select only specific fields
+  const posts = await Promise.all(
+    favoriteIds.map(async ({ creator, name }) => {
+      try {
+        const post = await Post.findOne({ creator, name }).select(
+          "name description type"
+        );
+        return post;
+      } catch (error) {
+        console.error(`Error finding post for ${creator}/${name}:`, error);
+        return null;
+      }
+    })
+  );
+
+  // Filter out null values
+  const validPosts = posts.filter((post) => post !== null);
+
+  res.json(validPosts);
 });
 export default router;
