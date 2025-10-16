@@ -47,22 +47,19 @@ export const Favorite = ({ creator, post }: FavoriteProps) => {
     const next = !liked;
 
     // update UI optimistically
-    setOptimisticLiked(next);
 
     // start async transition (API call or actual state update)
     startTransition(async () => {
+      setOptimisticLiked(next);
       try {
-        const response = await fetch(
-          `http://localhost:8000/posts/favorite/${creator}/${post}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            credentials: "include",
-            body: JSON.stringify({ creator, post }),
-          }
-        );
+        const response = await fetch(`http://localhost:8000/posts/favorite`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ creator, post }),
+        });
         const message = await response.json();
         console.log(message.status);
         setLiked(next); // commit real state
@@ -76,7 +73,7 @@ export const Favorite = ({ creator, post }: FavoriteProps) => {
 
   if (isLoading) {
     return (
-      <div className="cursor-pointer">
+      <div className="cursor-not-allowed">
         <FaRegStar className="w-8 h-8 text-gray-300" />
       </div>
     );
@@ -89,7 +86,6 @@ export const Favorite = ({ creator, post }: FavoriteProps) => {
       ) : (
         <FaRegStar className="w-8 h-8 text-yellow-500" />
       )}
-      {isPending && <span className="ml-2 text-gray-400 text-sm">Saving…</span>}
     </div>
   );
 };

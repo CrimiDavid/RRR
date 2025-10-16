@@ -156,8 +156,7 @@ router.post("/favorite", async (req, res) => {
   try {
     const userId = await Session(req);
     const { creator, post } = req.body;
-    const postId = creator + post;
-
+    const postId = [creator, post].join(",");
     // Find the user
     const user = await User.findById(userId);
     if (!user) {
@@ -182,5 +181,15 @@ router.post("/favorite", async (req, res) => {
     console.error("Favorite error:", e);
     res.status(500).json({ error: e.message });
   }
+});
+
+router.get("/all-favorited", async (req, res) => {
+  const userId = await Session(req);
+  // Find the user
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  user.favorites.map({ id });
 });
 export default router;
