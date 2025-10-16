@@ -131,10 +131,10 @@ router.get("/all", async (req, res) => {
   }
 });
 
-router.post("/favorite/:creator/:post", async (req, res) => {
+router.get("/favorite/:creator/:post", async (req, res) => {
   try {
     const userId = await Session(req);
-    const { creator, post } = req.body;
+    const { creator, post } = req.params;
     const postId = creator + post;
 
     // Find the user
@@ -147,7 +147,7 @@ router.post("/favorite/:creator/:post", async (req, res) => {
     if (isFavorited) {
       res.json({ status: true });
     }
-    res.json({ status: true });
+    res.json({ status: false });
   } catch (e) {
     res.send(e);
   }
